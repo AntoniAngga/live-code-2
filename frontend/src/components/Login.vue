@@ -10,11 +10,11 @@
     			<div class="col-xs-12 col-sm-6">	
     					<div class="input-group">
     						<span class="input-group-addon"><i class="fa fa-user"></i></span>
-    						<input type="text" class="form-control" name="emai" v-model="email" placeholder="Username">
+    						<input type="text" class="form-control" name="emai" v-model="user.username" placeholder="Username">
     					</div>		
     					<div class="input-group">
     						<span class="input-group-addon"><i class="fa fa-lock"></i></span>
-    						<input  type="password" class="form-control" name="password" v-model="password" placeholder="Password">
+    						<input  type="password" class="form-control" name="password" v-model="user.password" placeholder="Password">
     					</div>
               <span class="help-block">{{msg}}</span>
     					<button class="btn btn-lg btn-primary btn-block" @click="doLogin">Login</button>
@@ -32,11 +32,12 @@ export default {
      user:{
        username: '',
        password: ''
-     }
+     },
+     msg : null
    }
  },
  methods:{
-   signIn: function(){
+   doLogin: function(){
      self = this
      axios.post('http://localhost:3000/signin', {
        username:self.user.username,
@@ -56,11 +57,6 @@ export default {
        console.log(err);
      })
    }
- },
- created(){
-   if(window.localStorage.getItem('token'))
-   this.$store.commit('changeIsLogin',true)
-   else this.$store.commit('changeIsLogin',false)
  }
 }
 </script>
