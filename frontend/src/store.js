@@ -9,7 +9,6 @@ export const store = new Vuex.Store({
       list_Article:[],
       listArticleByUser:[]
     },
-        //GETTERS//
     getters:{
       isLogin(state){
         return state.is_login;
@@ -21,7 +20,6 @@ export const store = new Vuex.Store({
         return state.listArticleByUser;
       }
     },
-        //MUTATATIONS//
     mutations:{
       changeIsLogin(state,value){
         state.is_login=value
@@ -33,24 +31,21 @@ export const store = new Vuex.Store({
         state.listArticleByUser=list
       }
     },
-        //ACTIONS//
     actions:{
       changeIsLogin({commit},value){
         commit('changeIsLogin',value)
       },
       getListArticle({commit}){
-        axios.get('http://localhost:3000/articles')
+        this.axios.get('http://localhost:3000/artikel')
         .then(response =>{
-          console.log('articless---------',response.data);
           commit('getListArticle',response.data)
         })
       },
       getListArticleByUser({commit}){
         let user = window.localStorage.getItem('user');
         let list=[]
-        axios.get('http://localhost:3000/articles')
+        this.axios.get('http://localhost:3000/artikel')
         .then(response =>{
-          console.log('datea----------',response.data.author.username);
           list=response.data.filter(article =>{
             return article.author.username==user
           })

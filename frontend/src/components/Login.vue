@@ -39,19 +39,15 @@ export default {
  methods: {
    doLogin: function(){
      self = this
-     axios.post('http://localhost:3000/login', {
+     this.axios.post('http://localhost:3000/login', {
        username:self.user.username,
        password:self.user.password
      })
      .then((response)=>{
-       var token = response.data.token
-       var user = response.data.username
-       console.log(user);
-       console.log(token);
+       let token = response.token
        window.localStorage.setItem('token',token)
-       window.localStorage.setItem('user', user)
        self.$store.commit('changeIsLogin',true)
-       self.$router.push('/')
+       self.$router.push('/dashboard')
      })
      .catch((err)=>{
        console.log(err);
