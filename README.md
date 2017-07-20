@@ -8,5 +8,3 @@ Cara Memakai aplikasi nya :
   npm start
 ```
 untuk API nya ada :
-
-
