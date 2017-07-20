@@ -36,10 +36,10 @@ export default {
      msg : null
    }
  },
- methods:{
+ methods: {
    doLogin: function(){
      self = this
-     axios.post('http://localhost:3000/signin', {
+     axios.post('http://localhost:3000/login', {
        username:self.user.username,
        password:self.user.password
      })
@@ -57,8 +57,8 @@ export default {
        console.log(err);
      })
    }
- }
-}
+    }
+  }
 </script>
 
 <style scoped>
